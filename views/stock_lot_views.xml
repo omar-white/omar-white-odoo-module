@@ -1,11 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <!-- Inherit Lot/Serial Number Form View -->
     <record id="view_stock_lot_form_tofupilot" model="ir.ui.view">
         <field name="name">stock.lot.form.tofupilot</field>
         <field name="model">stock.lot</field>
         <field name="inherit_id" ref="stock.view_production_lot_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='name']" position="after">
-                <field name="tofu_pilot" readonly="1"/>
+            <!-- Add field tofu_pilot at the bottom of the form -->
+            <xpath expr="//sheet" position="inside">
+                <group string="TofuPilot Data">
+                    <field name="tofu_pilot" readonly="1" string="TofuPilot Link"/>
+                </group>
             </xpath>
         </field>
     </record>

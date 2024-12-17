@@ -1,13 +1,14 @@
-import requests
 from odoo import api, fields, models
+import requests
 
 class StockLot(models.Model):
     _inherit = 'stock.lot'
 
-    tofu_pilot = fields.Char(string="TofuPilot", compute="_compute_tofu_pilot", store=False)
+    tofu_pilot = fields.Char(string="TofuPilot", compute="_compute_tofu_pilot", store=True)
 
     @api.depends('name')
     def _compute_tofu_pilot(self):
+        """Fetch TofuPilot API link based on the Lot/Serial number."""
         api_url = "https://tofupilot.com/api/serial_number"
         for record in self:
             try:
